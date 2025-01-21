@@ -1,0 +1,55 @@
+kind: Skill
+metadata:
+  pcn: cognition.skills.data-insights
+  pcsn: data-insights-skill
+  pck: Skill
+  pcl: Cognition
+  pcc: cognition.skills.data-insights
+  pcln: /usr/local/bin/skills
+  pct:
+    - data
+    - insights
+  pcv: 1.5.0
+  pci: registry.example.com/cognition/data-insights-skill:stable
+
+name: cognition.skills.data-insights
+shortName: data-insights-skill
+namespace: cognition
+owner: Data Science Team
+apiVersion: v1
+description: A skill for transforming raw data into actionable insights using advanced analytics.
+
+settings:
+  skillValidationRequired: true
+  skillStage: knowledge
+
+secrets:
+  apiKey: |
+    -----BEGIN AGE ENCRYPTED FILE-----
+    YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBOVlB0bjRqMUNwbzRRTmor
+    clUrVG0xNHllZnNJSFpSVUVlUm9iQXFnTlJZCk1idWI3VTFjVFQ5M2Q2WUhLclFj
+    MmtmTmdqUkkzQUJSa2VWNGZrYnVYdE0KLT4gWDI1NTE5IFlyZE85ZVc3enloZ0Iz
+    T1A5Wk9ycnJyNVFrSTdhek5BV1lsc0g5djZNaUEKUmVVU0UxWGdvWS81ZFFPeHdj
+    K0hEcGtLRjBuQ3lDanZlZGhZbFVtaVVMcwotLS0gNXZObWpPakpMOTlQczVwUUFo
+    Zk1oN01LOWdEcEM2OHlPQTRiME96UzlXdwrKzsR1W5/XSGJ4OKpMv6f1ilLaKeKI
+    JgaHoRiPPgECnNO0C1O0Yw==
+    -----END AGE ENCRYPTED FILE-----
+  authToken: |
+    -----BEGIN AGE ENCRYPTED FILE-----
+    YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBIcVZRaUlNNjdrYklsUVF5
+    UWFZTHRFNndGUWZGeVF4OGMvSTBrYWU5UEZvCkM0b2EvbjhIdnBHREdSSDJqOGc1
+    Q2hsd0t2em1iTGxsSUhhaWdqeDhtVWMKLT4gWDI1NTE5IDVJT3BTYk0zeWd3Q0My
+    bFhFbFdnLzlwdDhTd28vTHVxYitRZkkrRXFDaXcKOXlwQ2I3a3lpczZsMWFZNERl
+    Vnp5a1p5RC9OSm1CK2FHV3hwMENsbUpUVQotLS0gRXZ5VmxxVkE3UTRQR1NGRk1k
+    T2tEOTVPVEhDM0dTVURUUWxLWDNtWjQ5MArfc+PTEYptAGMQuVN3m1m2ojumaTJ4
+    AbOGVVAbvmsZlUVOyg==
+    -----END AGE ENCRYPTED FILE-----
+
+dependencies:
+  - cognition.services.data-pipeline
+  - cognition.services.analytics
+
+hooks:
+  initialize: plasmactl cognition.skills.data-insights:initialize
+  build: plasmactl cognition.skills.data-insights:build
+  expose: plasmactl cognition.skills.data-insights:expose
