@@ -1,0 +1,120 @@
+kind: Model
+metadata:
+  pcn: cognition.model.analytics
+  pcsn: analytics-model
+  pck: Model
+  pcl: Cognition
+  pcc: cognition.model.analytics
+  pcln: /usr/local/bin/models
+  pct:
+    - analytics
+    - processing
+  pcv: 1.3.5
+  pci: registry.example.com/cognition/analytics-model:latest
+
+name: "cognition.model.analytics"
+shortName: analytics-model
+namespace: cognition
+owner: Data Science Team
+apiVersion: v1
+description: A model to perform large-scale data analytics and machine learning operations.
+
+settings:
+  globalMonitoringEnabled: true
+  defaultTheme: dark
+
+
+platform:
+  foundation:
+    cluster:
+      - component: master-node
+        clusterSettings:
+          nodeKind: master
+      - component: worker-node
+        clusterSettings:
+          nodeKind: worker
+      storage:
+        - s3-bucket
+        - hdfs-storage
+      network:
+        ingress:
+          - nginx
+          - traefik
+      observability:
+        - prometheus
+        - grafana
+      security:
+        - firewall
+        - encryption
+      core:
+        - linux-os
+        - pki-infrastructure
+
+    interaction:
+      observability:
+      - component: grafana
+        settings:
+          grafanaURL: http://grafana.example.com
+          dashboardRefreshInterval: 30s
+          monitoringEnabled: true
+          activeTheme: light
+      management:
+        - component: erp-system
+          settings:
+            erpDatabaseURL: postgresql://erp-db.example.com
+      communication:
+        - slack
+        - email
+      operations:
+        - monitoring-service
+        - alerting-system
+      marketing:
+        - component: landing-page
+          settings:
+            landingPageTitle: Welcome to Our Analytics Platform
+            trackVisitor: true
+
+    integration:
+      core:
+        - auth-service
+        - api-gateway
+      organization:
+        - hr-flow
+        - sales-flow
+      operations:
+        - ci-cd-pipeline
+        - deployment-automation
+
+    cognition:
+      core:
+        - natural-language-processing
+        - image-recognition
+      data:
+        - data-ingestion-pipeline
+        - data-warehouse
+      knowledge:
+        - knowledge-graph
+      wisdom:
+        - ai-decision-engine
+
+    conversation:
+      core:
+        - chatbot
+        - voice-assistant
+
+packages:
+  - name: data-ingestion
+    source:
+      type: git
+      tag: v1.2.0
+      url: https://git.example.com/data-ingestion.git
+  - name: data-analytics
+    source:
+      type: git
+      tag: v2.1.0
+      url: https://git.example.com/data-analytics.git
+  - name: ml-training
+    source:
+      type: docker
+      tag: latest
+      url: https://registry.example.com/cognition/ml-training:latest

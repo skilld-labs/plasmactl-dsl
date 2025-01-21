@@ -1,0 +1,34 @@
+# YAML representation of the exampleApp
+
+kind: Application
+metadata:
+  pcn: cognition.applications.dashboards
+  pcsn: dashboards
+  pck: Application
+  pcl: Cognition
+  pcc: cognition.applications.dashboards
+  pcln: /usr/local/bin/applications
+  pct:
+    - dashboard
+    - analytics
+  pcv: 1.2.3
+  pci: registry.example.com/cognition/dashboards:latest
+
+name: cognition.applications.dashboards
+shortName: dashboards
+namespace: cognition
+owner: Operations Team
+apiVersion: v1
+description: An application for managing dashboards and providing real-time analytics.
+
+dependencies:
+  - cognition.services.dashboards-grafana
+  - cognition.services.dashboards-postgres
+
+hooks:
+  initialize: "plasmactl cognition.applications.dashboards:initialize"
+  build: "plasmactl cognition.applications.dashboards:build"
+  expose: "plasmactl cognition.applications.dashboards:expose"
+
+settings:
+  maxRetries: 3

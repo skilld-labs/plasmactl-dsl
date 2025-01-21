@@ -1,0 +1,34 @@
+kind: Software
+metadata:
+  pcn: cognition.software.data-processing
+  pcsn: data-processing-software
+  pck: Software
+  pcl: Cognition
+  pcc: cognition.software.data-processing
+  pcln: /usr/local/bin/software
+  pct:
+    - data
+    - processing
+  pcv: 2.2.0
+  pci: registry.example.com/cognition/data-processing-software:stable
+
+name: cognition.software.data-processing
+shortName: data-processing-software
+namespace: cognition
+owner: Software Development Team
+apiVersion: v1
+description: A software package for processing and analyzing large datasets efficiently.
+
+settings:
+  serviceBuilderContextType: cluster
+  serviceScope: local
+  port: 8080
+
+dependencies:
+  - cognition.services.data-ingestion
+  - cognition.services.data-storage
+
+hooks:
+  initialize: plasmactl cognition.software.data-processing:initialize
+  build: plasmactl cognition.software.data-processing:build
+  expose: plasmactl cognition.software.data-processing:expose

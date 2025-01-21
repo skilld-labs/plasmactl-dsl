@@ -1,0 +1,29 @@
+kind: Platform
+metadata:
+  pcn: cognition.platforms.cloud
+  pcsn: cloud-platform
+  pck: Platform
+  pcl: Cognition
+  pcc: cognition.platforms.cloud
+  pcln: /usr/local/bin/platforms
+  pct:
+    - cloud
+    - infrastructure
+  pcv: 2.1.0
+  pci: registry.example.com/cognition/cloud-platform:stable
+
+name: cognition.platforms.cloud
+shortName: cloud-platform
+namespace: cognition
+owner: Cloud Infrastructure Team
+apiVersion: v2
+description: A platform responsible for managing cloud-based infrastructure and services.
+
+dependencies:
+  - cognition.services.cloud-provisioner
+  - cognition.services.networking
+
+hooks:
+  initialize: plasmactl cognition.platforms.cloud:initialize
+  build: plasmactl cognition.platforms.cloud:build
+  expose: plasmactl cognition.platforms.cloud:expose

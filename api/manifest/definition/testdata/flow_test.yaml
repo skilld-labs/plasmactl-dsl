@@ -1,0 +1,39 @@
+kind: Flow
+metadata:
+  pcn: cognition.flows.data-processing
+  pcsn: data-flow
+  pck: Flow
+  pcl: Cognition
+  pcc: cognition.flows.data-processing
+  pcln: /usr/local/bin/flows
+  pct:
+    - data-processing
+    - automation
+  pcv: 1.5.0
+  pci: registry.example.com/cognition/data-flow:latest
+
+name: cognition.flows.data-processing
+shortName: data-flow
+namespace: cognition
+owner: Data Engineering Team
+apiVersion: v1
+description: A flow for processing data and handling automation tasks.
+
+flowType: data
+flowName: data-processing-flow
+flowInput: raw-data.csv
+flowOutput: processed-data.json
+
+settings:
+  postgresVersion: 13.2.0
+  grafanaAlerting: true
+  timeout: 120
+
+dependencies:
+  - cognition.services.postgres
+  - cognition.services.grafana
+
+hooks:
+  initialize: plasmactl cognition.flows.data-processing:initialize
+  build: plasmactl cognition.flows.data-processing:build
+  expose: plasmactl cognition.flows.data-processing:expose
