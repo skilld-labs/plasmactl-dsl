@@ -1,0 +1,35 @@
+kind: Service
+metadata:
+  pcn: cognition.services.logging
+  pcsn: logging-service
+  pck: Service
+  pcl: Cognition
+  pcc: cognition.services.logging
+  pcln: /usr/local/bin/services
+  pct:
+    - logging
+    - monitoring
+  pcv: 2.0.0
+  pci: registry.example.com/cognition/logging:stable
+
+name: cognition.services.logging
+shortName: logging-service
+namespace: cognition
+owner: DevOps Team
+apiVersion: v2
+description: A service responsible for managing and aggregating logs.
+
+settings:
+  serviceBuilderContextType: image
+  serviceScope: cluster
+  retryLimit: 5
+  grafanaApiKey: "grafana-api-key-here"
+
+dependencies:
+  - cognition.services.database
+  - cognition.services.monitoring
+
+hooks:
+  initialize: plasmactl cognition.services.logging:initialize
+  build: plasmactl cognition.services.logging:build
+  expose: plasmactl cognition.services.logging:expose

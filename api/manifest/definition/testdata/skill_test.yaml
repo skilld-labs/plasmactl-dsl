@@ -1,0 +1,36 @@
+kind: Skill
+metadata:
+  pcn: cognition.skills.data-insights
+  pcsn: data-insights-skill
+  pck: Skill
+  pcl: Cognition
+  pcc: cognition.skills.data-insights
+  pcln: /usr/local/bin/skills
+  pct:
+    - data
+    - insights
+  pcv: 1.5.0
+  pci: registry.example.com/cognition/data-insights-skill:stable
+
+name: cognition.skills.data-insights
+shortName: data-insights-skill
+namespace: cognition
+owner: Data Science Team
+apiVersion: v1
+description: A skill for transforming raw data into actionable insights using advanced analytics.
+
+settings:
+  skillValidationRequired: true
+  skillStage: knowledge
+
+secrets:
+  - {apiKey: "topsecretapikey", authToken: "verysecrettoken" }
+
+dependencies:
+  - cognition.services.data-pipeline
+  - cognition.services.analytics
+
+hooks:
+  initialize: plasmactl cognition.skills.data-insights:initialize
+  build: plasmactl cognition.skills.data-insights:build
+  expose: plasmactl cognition.skills.data-insights:expose

@@ -1,0 +1,34 @@
+kind: Package
+metadata:
+  pcn: cognition.packages.data-analysis
+  pcsn: data-analysis-package
+  pck: Package
+  pcl: Cognition
+  pcc: cognition.packages.data-analysis
+  pcln: /usr/local/bin/packages
+  pct:
+    - data-analysis
+    - packages
+  pcv: 1.0.0
+  pci: registry.example.com/cognition/data-analysis-package:stable
+
+name: cognition.packages.data-analysis
+shortName: data-analysis-package
+namespace: cognition
+owner: Data Engineering Team
+apiVersion: v1
+description: A package for data analysis tools and libraries.
+
+settings:
+  type: library
+  tag: v2.3.0
+  url: https://example.com/packages/data-analysis-library-v2.3.0.tar.gz
+
+dependencies:
+  - cognition.services.data-storage
+  - cognition.services.analytics
+
+hooks:
+  initialize: plasmactl cognition.packages.data-analysis:initialize
+  build: plasmactl cognition.packages.data-analysis:build
+  expose: plasmactl cognition.packages.data-analysis:expose

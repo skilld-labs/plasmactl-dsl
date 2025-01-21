@@ -1,0 +1,32 @@
+kind: Metric
+metadata:
+  pcn: cognition.metrics.response-times
+  pcsn: response-time-metric
+  pck: Metric
+  pcl: Cognition
+  pcc: cognition.metrics.response-times
+  pcln: /usr/local/bin/metrics
+  pct:
+    - performance
+    - monitoring
+  pcv: 2.0.0
+  pci: registry.example.com/cognition/response-metric:stable
+
+name: cognition.metrics.response-times
+shortName: response-time-metric
+namespace: cognition
+owner: Monitoring Team
+apiVersion: v2
+description: A metric for tracking response times and performance of services.
+
+settings:
+  aggregationInterval: "5m"
+
+dependencies:
+  - cognition.services.monitoring
+  - cognition.services.alerting
+
+hooks:
+  initialize: plasmactl cognition.metrics.response-times:initialize
+  build: plasmactl cognition.metrics.response-times:build
+  expose: plasmactl cognition.metrics.response-times:expose

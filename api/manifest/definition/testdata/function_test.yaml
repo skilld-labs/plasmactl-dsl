@@ -1,0 +1,32 @@
+kind: Function
+metadata:
+  pcn: cognition.functions.data-processing
+  pcsn: data-processing-function
+  pck: Function
+  pcl: Cognition
+  pcc: cognition.functions.data-processing
+  pcln: /usr/local/bin/functions
+  pct:
+    - data-processing
+    - functions
+  pcv: 1.0.0
+  pci: registry.example.com/cognition/data-function:latest
+
+name: cognition.functions.data-processing
+shortName: data-processing-function
+namespace: cognition
+owner: Data Processing Team
+apiVersion: v1
+description: A function for synchronous and asynchronous data processing tasks.
+
+settings:
+  operationMode: async
+
+dependencies:
+  - cognition.services.data-ingestion
+  - cognition.services.data-validation
+
+hooks:
+  initialize: plasmactl cognition.functions.data-processing:initialize
+  build: plasmactl cognition.functions.data-processing:build
+  expose: plasmactl cognition.functions.data-processing:expose

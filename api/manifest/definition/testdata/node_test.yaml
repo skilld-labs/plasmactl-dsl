@@ -1,0 +1,40 @@
+kind: Node
+metadata:
+  pcn: cognition.nodes.compute
+  pcsn: compute-node
+  pck: Node
+  pcl: Cognition
+  pcc: cognition.nodes.compute
+  pcln: /usr/local/bin/nodes
+  pct:
+    - infrastructure
+    - compute
+  pcv: 3.0.0
+  pci: registry.example.com/cognition/compute-node:stable
+
+name: cognition.nodes.compute
+shortName: compute-node
+namespace: cognition
+owner: Infrastructure Team
+apiVersion: v3
+description: A node responsible for high-performance computing tasks.
+
+settings:
+  region: "us-west-1"
+  cpu: 64
+  ram: "256GiB"
+  storage: "2000GiB"
+  privateIP: "192.168.1.10"
+  publicIP: "203.0.113.10"
+  chassis:
+    - chassis-1
+    - chassis-2
+
+dependencies:
+  - cognition.services.compute-scheduler
+  - cognition.services.monitoring
+
+hooks:
+  initialize: plasmactl cognition.nodes.compute:initialize
+  build: plasmactl cognition.nodes.compute:build
+  expose: plasmactl cognition.nodes.compute:expose

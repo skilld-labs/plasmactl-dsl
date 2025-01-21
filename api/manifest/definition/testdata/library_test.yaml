@@ -1,0 +1,32 @@
+kind: Library
+metadata:
+  pcn: cognition.libraries.data-processing
+  pcsn: data-processing-library
+  pck: Library
+  pcl: Cognition
+  pcc: cognition.libraries.data-processing
+  pcln: /usr/local/bin/libraries
+  pct:
+    - data-processing
+    - plugins
+  pcv: 1.1.0
+  pci: registry.example.com/cognition/data-library:stable
+
+name: cognition.libraries.data-processing
+shortName: data-processing-library
+namespace: cognition
+owner: Data Science Team
+apiVersion: v1
+description: A library for data processing tasks, with plugin support.
+
+settings:
+  pluginPath: "/usr/local/bin/plugins"
+
+dependencies:
+  - cognition.services.plugin-manager
+  - cognition.services.data-storage
+
+hooks:
+  initialize: plasmactl cognition.libraries.data-processing:initialize
+  build: plasmactl cognition.libraries.data-processing:build
+  expose: plasmactl cognition.libraries.data-processing:expose

@@ -1,0 +1,32 @@
+kind: Entity
+metadata:
+  pcn: cognition.entities.analytics
+  pcsn: analytics
+  pck: Entity
+  pcl: Cognition
+  pcc: cognition.entities.analytics
+  pcln: /usr/local/bin/entities
+  pct:
+    - analytics
+    - data-processing
+  pcv: 3.0.0
+  pci: registry.example.com/cognition/analytics:latest
+
+name: cognition.entities.analytics
+shortName: analytics
+namespace: cognition
+owner: Data Science Team
+apiVersion: v3
+description: An entity for handling and processing analytics data.
+
+settings:
+  schemaVersion: 1
+
+dependencies:
+  - cognition.services.data-ingestion
+  - cognition.services.data-storage
+
+hooks:
+  initialize: plasmactl cognition.entities.analytics:initialize
+  build: plasmactl cognition.entities.analytics:build
+  expose: plasmactl cognition.entities.analytics:expose
